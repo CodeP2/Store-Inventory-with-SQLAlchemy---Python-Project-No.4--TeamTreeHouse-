@@ -11,7 +11,7 @@ Base = declarative_base()
 
 
 class Product(Base):
-    __tablename__ = "Produts"
+    __tablename__ = "Products"
 
     product_id = Column(Integer, primary_key=True, autoincrement=True)
     product_name = Column(String)
