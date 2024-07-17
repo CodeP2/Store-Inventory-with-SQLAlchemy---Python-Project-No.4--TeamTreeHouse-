@@ -3,6 +3,7 @@ def main_menu():
           \rv) Search product
           \ra) Add a new product
           \rb) backup your database entries
+          \rx) Exit Program
         """)
 
 
@@ -11,7 +12,7 @@ def menu_v():
           \r1) Search by id
           \r2) Search by date
           \r3) Search by name
-          \r4) Exit Program
+          \r4) Exit Menu
           """)
 
 
