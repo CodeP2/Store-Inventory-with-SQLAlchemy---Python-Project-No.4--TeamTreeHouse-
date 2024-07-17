@@ -2,7 +2,12 @@ import error_messages
 
 
 def main_menu_message():
-    pass
+    print("""Welcome to Inventory Program
+          \rv) Search product
+          \ra) Add a new product
+          \rb) backup your database entries
+          \rx) Exit Program
+          """)
 
 
 def main_menu():
