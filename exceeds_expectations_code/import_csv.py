@@ -3,16 +3,17 @@ import os
 import datetime
 import sys
 import sqlite3
-import execute_yes_no
 
 """
 getting the path to a csv file
 with sys.argv[x] to get folder, file name
-from a getgo
+joining paths with ../folder and file name
+while resolving any ../ with normpath
 """
 def get_file(folder, file):
     script_file = os.path.dirname(__file__)
-    return os.path.join(script_file, folder, file)
+    join_path = os.path.join(script_file, folder, file)
+    return os.path.normpath(join_path)
 
 
 def read_csv_file(path):
@@ -31,7 +32,7 @@ def read_csv_file(path):
 converting data passed from read_csv_file() function
 """
 def conver_data(row):
-    row["product_price"] = float(row["product_price"].replace("$", "")) #using .replace() to remove currency sign
+    
     row["product_quantity"] = int(row["product_quantity"])
     row["date_updated"] = datetime.datetime.strptime(row["date_updated"], "%m/%d/%Y").date()
     return row
@@ -48,8 +49,8 @@ def connect_to_database(data_base_name):
 def insert_data_to_database(data_to_phrase, cursor, sql_database):
     for row in data_to_phrase:
         values = (row["product_name"], row["product_quantity"], row["product_price"], row["date_updated"])
-        cursor.execute(sql_database, values)
-    execute_yes_no.exceute_yes_no(True, cursor)
+        cursor.execute("SELECT COUNT(*) FROM Products WHERE product_name = ?", (row["product_name"],))
+        
 
 
 if __name__ == "__main__":
