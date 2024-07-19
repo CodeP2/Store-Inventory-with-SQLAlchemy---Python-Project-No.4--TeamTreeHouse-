@@ -1,10 +1,4 @@
-Before we start I need to explain to why did I use for product_price is:
-
-- Numeric in database but converted as DECIMAL instead of Integer
-- Integer does not take 3.99 for example as an argument therefore I have to change the price to 399
-- using Integer instead of Numeric is miss leading because people who are not a programer prefer to understand the information form just reading instead of figuring out if its 399 or 3.99
-
-the reason for that is the practice for working with real world databases
+Before we start I need to explain of why I do have 2 folders in my repository the reason for that is one is an extended code with using different imports and such and the other is for purely exceed expectation.
 
 Explaination how the code works:
 - autorincrement=True used to ensure uniqe id's 
