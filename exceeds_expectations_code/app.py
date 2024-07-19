@@ -21,7 +21,7 @@ def main_menu():
         elif option == "a":
             search_or_add_entry.add_product()
         elif option == "b":
-            export_to_csv.export_to_csv()
+            export_to_csv.back_up_to_csv()
         elif option == "x":
             break
         else:
