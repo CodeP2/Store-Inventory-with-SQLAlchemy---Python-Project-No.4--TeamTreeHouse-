@@ -1,9 +1,11 @@
 import error_messages
+import search_or_add_entry
+import export_to_csv
 
 
 def main_menu_message():
     print("""Welcome to Inventory Program
-          \rv) Search product
+          \rv) Search product by id
           \ra) Add a new product
           \rb) backup your database entries
           \rx) Exit Program
@@ -15,11 +17,11 @@ def main_menu():
         main_menu_message()
         option = input(">  ").lower().strip()
         if option == "v":
-            pass
+            search_or_add_entry.search_by_id()
         elif option == "a":
-            pass
+            search_or_add_entry.add_product()
         elif option == "b":
-            pass
+            export_to_csv.export_to_csv()
         elif option == "x":
             break
         else:

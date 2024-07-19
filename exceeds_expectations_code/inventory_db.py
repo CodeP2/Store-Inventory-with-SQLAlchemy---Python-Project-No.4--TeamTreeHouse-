@@ -19,8 +19,11 @@ class Product(Base):
     date_updated  = Column(Date)
 
     def __repr__(self):
-        return f"<id: {self.product_id}, name: {self.product_name}, quantity: {self.product_quantity}\
-            price: {self.product_price}, updated: {self.date_updated}>"
+        return f"""\rProduct Id: {self.product_id}
+                \rProduct Name: {self.product_name}
+                \rProduct Quantity: {self.product_quantity}
+                \rProduct Price: {self.product_price}
+                \rDate Updated: {self.date_updated}"""
 
 
 if __name__ == "__main__":
