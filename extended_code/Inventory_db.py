@@ -17,11 +17,11 @@ class Product(Base):
     product_name = Column(String)
     product_quantity = Column(Integer)
     product_price = Column(Numeric(10, 2))
-    product_updated = Column(Date)
+    date_updated = Column(Date)
 
     def __repr__(self):
         return f"<id: {self.product_id}, name: {self.product_name}, quantity: {self.product_quantity}\
-            price: {self.product_price}, updated: {self.product_updated}>"
+            price: {self.product_price}, updated: {self.date_updated}>"
 
 
 if __name__ == "__main__":
