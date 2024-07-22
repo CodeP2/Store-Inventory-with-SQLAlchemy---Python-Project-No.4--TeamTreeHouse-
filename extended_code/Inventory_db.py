@@ -6,7 +6,7 @@ from sqlalchemy.types import Numeric
 
 engine = create_engine("sqlite:///Inventory.db", echo=False)
 Session = sessionmaker(bind=engine)
-session = Session
+session = Session()
 Base = declarative_base()
 
 

@@ -10,9 +10,11 @@ def main_menu():
 def menu_v():
     print("""Search Product Menu
           \r1) Search by id
-          \r2) Search by date
-          \r3) Search by name
-          \r4) Exit Menu
+          \r2) Search by name
+          \r3) Search by update date
+          \r4) Search by quantity
+          \r5) Search by price
+          \r6) Exit Menu
           """)
 
 

@@ -1,15 +1,25 @@
+import datetime
+import Inventory_db
+
+
 def get_entry_values_by(column_name):
     return [item[0] for item in Inventory_db.session.query(column_name)]
 
 
 def Index_list():
-    return get_entry_values_by(getattr(Inventory_db.Product, "id"))
+    return get_entry_values_by(getattr(Inventory_db.Product, "product_id"))
+
+
+def product_name_list():
+    author_names, column_names = collect_entries("product_name")
+    stop_entries(author_names)
+    return get_entry_values_by(column_names)
 
 
 def collect_entries(column_name):
     empty_list = []
-    column = getattr(books_holder.Books, column_name)
-    for entry in books_holder.session.query(column):
+    column = getattr(Inventory_db.Product, column_name)
+    for entry in Inventory_db.session.query(column):
         empty_list.append(entry)
     return empty_list, column
 
