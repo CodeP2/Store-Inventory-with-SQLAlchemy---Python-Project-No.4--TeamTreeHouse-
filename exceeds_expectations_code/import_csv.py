@@ -36,7 +36,7 @@ def read_csv_file(path):
 
 def conver_data(row):
     """
-    takes all of the data as strings to be converted to datetime and integers
+    takes all of the data as strings for specific dict keys to be converted to datetime and integers
     """
     row = get_int_price(row)
     row["product_quantity"] = int(row["product_quantity"])
@@ -57,17 +57,43 @@ def get_int_price(row):
 
 def insert_data(row):
     """
-    Inserts data and making sure not to add a duplicate
-    existing_product takes my row's name and date to check if the product is all ready
-    in the database if it not it adds automatically to database while printing out added entry
-    if the entry is in the all ready in the database it skips the entry
-    and checks for IntegrityError which checks if the entry is NULL, column that does not exist
-    or if theres a duplicate with unique constrait 
+    Inserts data and making sure not to add a duplicate to a database
+    instead it overwrites changed entry in a database if thier update date is newer
+    if the update date is old it skips the entry
+    additionally checks if the price or quantity was changed in case update happend on the same day
+    if theres any changes then it updates the quantity and/or price
+    displays what entries are updated, added or skipped
     """
     try:
-        existing_product = session.query(Product).filter_by(product_name=row["product_name"], date_updated=row["date_updated"]).first()
+        existing_product = session.query(Product).filter_by(product_name=row["product_name"]).first()
 
-        if not existing_product:
+        csv_date = row["date_updated"]
+        csv_price = row["product_price"]
+        csv_quantity = row["product_quantity"]
+
+        if existing_product:
+            
+            price_changed = existing_product.product_price != csv_price
+            quantity_changed = existing_product.product_quantity != csv_quantity
+            
+            if existing_product.date_updated < csv_date:
+                existing_product.product_name = row["product_name"]
+                existing_product.product_quantity = row["product_quantity"]
+                existing_product.product_price = row["product_price"]
+                existing_product.date_updated = row["date_updated"]
+                session.commit()
+                print(f"Product updated! {row['product_name']}")
+            
+            elif price_changed or quantity_changed:
+                existing_product.product_quantity = csv_quantity
+                existing_product.product_price = csv_price
+                session.commit()
+                print(f"Entry price/quantity Updated for {row['product_name']}")
+            
+            else:
+                print(f"Entry skiped! {row['product_name']} is updated")
+        
+        else:
             product = Product(
                product_name=row["product_name"],
                product_quantity=row["product_quantity"],
@@ -75,10 +101,9 @@ def insert_data(row):
                date_updated=row["date_updated"]
             )
             session.add(product)
-            session.commit()
             print(f"Entry added! {row['product_name']}")
-        else:
-            print(f"Entry all ready exist! {row['product_name']}")
+        session.commit()
+    
     except IntegrityError:
         session.rollback()
         print(f"IntegrityError for: {row['product_name']}")           
