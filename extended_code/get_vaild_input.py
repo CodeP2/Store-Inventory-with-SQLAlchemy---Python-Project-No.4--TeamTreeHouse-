@@ -6,7 +6,7 @@ def get_input_index(index_list):
     while True:
         try:
             print(f"Options: {index_list}")
-            string_input = input(prompt_message("id")).strip()
+            string_input = input(f"{prompt_message('id')}\n>  ").strip()
             user_input = int(string_input)
             if user_input in index_list:
                 return user_input
@@ -31,7 +31,7 @@ def get_input_date():
 
 
 def get_input_price():
-    prompt_message("price")
+    print(prompt_message("price"))
     user_input1 = clear_data.get_decimal()
     print(prompt_message_second("price"))
     user_input2 = clear_data.get_decimal()
@@ -39,7 +39,7 @@ def get_input_price():
 
 
 def get_input_quantity():
-    prompt_message("quantity")
+    print(prompt_message("quantity"))
     user_input1 = clear_data.get_integer()
     print(prompt_message_second("quantity"))
     user_input2 = clear_data.get_integer()
