@@ -48,5 +48,5 @@ def back_up_to_csv():
     rows, columns = connect_to_database(query) # passes every entry and recives them as columns and rows
 
     new_file_name = input("name your file.\n>  ")
-    new_file = new_file_name + ".csv"
+    new_file = new_file_name + "_backup" +".csv"
     export_to_csv(new_file, columns, rows)

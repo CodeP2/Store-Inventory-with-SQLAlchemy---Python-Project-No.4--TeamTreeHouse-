@@ -46,7 +46,7 @@ def conver_data(row):
 
 def get_int_price(row):
     """
-    converts specifically price to Integer
+    converts specifically price to an Integer
     """
     row["product_price"] = row["product_price"].replace("$", "") #using .replace() to remove currency sign
     row["product_price"] = row["product_price"].split(".") 

@@ -1,5 +1,4 @@
-from add_or_update_entry import confirm_menu
-from error_messages import press_enter, integer_error_massage
+from error_messages import press_enter, integer_error_massage, menu_choice_error
 from inventory_db import session, Product
 
 
@@ -52,9 +51,25 @@ def search_by_id():
             if index_number in index_list:
                 query_by(index_number, "product_id")
                 press_enter()
-                confirm_menu("Would you like to continue looking for more products?(Y/N)", True)
+                confirm_keep_searching("Would you like to continue looking for more products?(Y/N)", True)
             else:
                 print("Index not found!")
                 press_enter()
         except ValueError:
             integer_error_massage(index_string)
+
+
+def confirm_keep_searching(message):
+    question = input(f"{message}\n>  ").lower()
+    while keep_searching:
+        if question in ["y", "n"]:
+            break
+        else:
+            menu_choice_error("Y/N")
+        if question == "y":
+            print("Looking for the next product...")
+            press_enter()
+        else:
+            print("Returning to main menu...")
+            press_enter()
+            keep_searching = False

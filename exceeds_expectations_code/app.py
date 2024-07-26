@@ -1,5 +1,6 @@
 import error_messages
-import search_or_add_entry
+import search_entry as se
+import add_or_update_entry as aoue
 import export_to_csv
 
 
@@ -17,9 +18,9 @@ def main_menu():
         main_menu_message()
         option = input(">  ").lower().strip()
         if option == "v":
-            search_or_add_entry.search_by_id()
+            se.search_by_id()
         elif option == "a":
-            search_or_add_entry.add_product()
+            aoue.add_or_update_product()
         elif option == "b":
             export_to_csv.back_up_to_csv()
         elif option == "x":

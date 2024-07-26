@@ -1,4 +1,7 @@
 def data_convertion_error_message(err, user_input, example):
+    """
+    custom error message for input convertion
+    """
     print(f"""\r#########Error###########
           \r#Incorrect format -> {err}
           \r#Your's Input: >{user_input}<
@@ -9,6 +12,9 @@ def data_convertion_error_message(err, user_input, example):
 
 
 def integer_error_massage(user_input):
+    """
+    custom error message for integers
+    """
     print(f"""\r#########Error###########
           \r#The input is not a number!
           \r#Your input: {user_input}
@@ -19,6 +25,9 @@ def integer_error_massage(user_input):
 
 
 def menu_choice_error(options):
+    """
+    custom error message for menu choice
+    """
     print(f"""\r#########Error###########
           \rIncorrect Choice!
           \rcorrect choices are: {options}
@@ -28,4 +37,7 @@ def menu_choice_error(options):
 
 
 def press_enter():
+    """
+    stop program so user can read an error message
+    """
     input("Press enter to continue...")
