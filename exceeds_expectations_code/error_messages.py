@@ -47,6 +47,24 @@ def file_not_found_error_message(folder, file, err):
     press_enter()
     
 
+def product_name_error(user_input):
+    print(f""""\r#########Error###########
+          \rProvided Product name is too short!
+          \rYour input: >{user_input}<
+          \rPlease provide at least 3 character long product name!
+          \r##########################""")
+    press_enter()
+
+
+def dot_space_error(user_input):
+    print(f""""\r#########Error###########
+          \rProvided price is not correct!
+          \rYour input: >{user_input}<
+          \rPlease provide a price with at least 2 spaces after a dot (this --> .)!
+          \r##########################""")
+    press_enter()
+
+
 def press_enter():
     """
     stop program so user can read an error message
