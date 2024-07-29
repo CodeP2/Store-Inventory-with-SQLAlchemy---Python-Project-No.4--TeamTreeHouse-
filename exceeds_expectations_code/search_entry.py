@@ -73,6 +73,7 @@ def confirm_keep_searching(message):
             break
         else:
             menu_choice_error("Y/N")
+            question = input(f"{message}\n>  ").lower()
     if question == "y":
         print("Looking for the next product...")
         press_enter()
