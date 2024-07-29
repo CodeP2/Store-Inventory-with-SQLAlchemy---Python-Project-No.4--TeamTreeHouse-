@@ -5,6 +5,10 @@ from inventory_db import session, Product
 keep_searching = True # global variable for search_by_id loop
 
 
+def change_global_to_false():
+    global keep_searching
+    keep_searching = False
+
 def get_entry_values_by(column_name):
     """
     This function is more of future proofing if I would like to update this code
@@ -42,6 +46,7 @@ def search_by_id():
     Or go back to main menu
     """
     global keep_searching
+    
     while keep_searching:
         try:
             index_list = id_list()
@@ -51,7 +56,7 @@ def search_by_id():
             if index_number in index_list:
                 query_by(index_number, "product_id")
                 press_enter()
-                confirm_keep_searching("Would you like to continue looking for more products?(Y/N)", True)
+                confirm_keep_searching("Would you like to continue looking for more products?(Y/N)")
             else:
                 print("Index not found!")
                 press_enter()
@@ -60,16 +65,18 @@ def search_by_id():
 
 
 def confirm_keep_searching(message):
+    global keep_searching
+
     question = input(f"{message}\n>  ").lower()
     while keep_searching:
         if question in ["y", "n"]:
             break
         else:
             menu_choice_error("Y/N")
-        if question == "y":
-            print("Looking for the next product...")
-            press_enter()
-        else:
-            print("Returning to main menu...")
-            press_enter()
-            keep_searching = False
+    if question == "y":
+        print("Looking for the next product...")
+        press_enter()
+    else:
+        print("Returning to main menu...")
+        press_enter()
+        change_global_to_false()
