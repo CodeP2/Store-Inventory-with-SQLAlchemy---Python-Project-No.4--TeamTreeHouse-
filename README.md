@@ -70,6 +70,20 @@ Personal Notes:
 While updating this README file I'm not sure how much I should explain more of my code or give even more links to documents for python or sqlalchemy because I feel like there's all ready a lot I have been using code from my previous project so I know what it does with the difference of using only csv and sqlalchemy only in this one but other than that like looking for entries and such its just the same code as I was already doing in my previous project so again I feel like there's no need to eplain more about it unless I will be asked to which if I have I will explain my code more if needed.
 
 
+Notes to how the program works:
+so I added check_if_exist.py file to handle if database file is created if not it creates it but also I added additional functionality which is I allow for multiple csv files to be imported if user is done with importing the files after that the program works as pre adding this feature
+
+
+bug fixes:
+- Fixed the bug that prevented user to access the question if they want to keep looking or not
+- Fixed infinite loop in add_or_update_entry.py
+- Fixed Infinite loop in search_entry.py
+
+
+Additional Notes:
+I take any criticism and that call with app was for sure helpful because user would expect an application to run everything instead of using different .exe I know this is just a script and terminal program but nonetheless it was a good call out so I appreciate it.
+
+
 Links: 
 - https://github.com/CodeP2/SQL-Alchemy-Practice-Python
 - https://docs.python.org/3/library/sqlite3.html
