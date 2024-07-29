@@ -1,6 +1,7 @@
+import re
 import datetime
 from inventory_db import session, Product
-from error_messages import data_convertion_error_message, menu_choice_error, press_enter
+from error_messages import data_convertion_error_message, menu_choice_error, press_enter, product_name_error, dot_space_error
 
 
 def add_or_update_product():
@@ -9,9 +10,9 @@ def add_or_update_product():
     first entry with matched product name and updates it if the date_updated
     is higher than existing entry's date
     """
-    product_name = input("What is the name of the product?\n>  ")
+    product_name = get_product_name("What is the name of the product?")
     product_quantity = get_integer("What is the quantity of the product?", "85")
-    product_price = get_integer("What is the price of the product?", "12.99", True)
+    product_price = get_price_int("What is the price of the product?", "12.99")
     date_updated = get_datetime("MM/DD/YYYY or 09/22/2015")
     
     existing_product = session.query(Product).filter_by(product_name=product_name).first() # finds existing product by its name
@@ -36,15 +37,23 @@ def add_or_update_product():
     confirm_menu("Are you sure you want to add this product?(Y/N)") # makes sure a user wants to add a product to database
 
 
-def get_integer(message, error_message, is_price=False):
+def get_product_name(message):
+    while True:
+        print("Product name has to be at least 3 characters long!")
+        new_name = input(f"{message}\n>  ").strip()
+        if len(new_name) >= 3:
+            return new_name
+        else:
+            product_name_error(new_name)
+
+
+def get_integer(message, error_message):
     """
-    changes string into an integer based on If user is prompted to pass a price or quantity
+    changes string into an integer without decimal point
     """
     while True:
         try:
             take_string = input(f"{message}\n>  ").strip()
-            if is_price: # checks if I want to convert price if not it moves to the next part
-                take_string = take_string.replace(".", "") # removes dot so it can be converted to int
             to_integer = int(take_string)
             if type(to_integer) is int:
                 return to_integer
@@ -52,6 +61,24 @@ def get_integer(message, error_message, is_price=False):
                 print(f"Incorrect Format! Example: {error_message}")
         except ValueError as err:
             data_convertion_error_message(err, take_string, f"{error_message}")
+
+
+
+def get_price_int(message, error_message):
+    while True:
+        print("the value has to have a decimal point for example 2.00")
+        take_string = input(f"{message}\n>  ").strip()
+        pattern = r"^\d+\.\d{2}$" # a pattern to match a number with exacly 2 digits after the decimal point
+        if re.match(pattern, take_string):
+            try:
+                take_string = take_string.replace(".", "") # removes dot so it can be converted to int
+                to_integer = int(take_string)
+                if type(to_integer) is int:
+                    return to_integer
+            except ValueError as err:
+                data_convertion_error_message(err, take_string, f"{error_message}")
+        else:
+            dot_space_error(take_string)
 
 
 def get_datetime(error_message):
@@ -77,6 +104,7 @@ def confirm_menu(message):
             break
         else:
             menu_choice_error("Y/N")
+            question = input(f"{message}\n>  ").lower()
     if question == "y":
         session.commit()
         print("Product added/updated!")
