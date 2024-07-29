@@ -36,6 +36,17 @@ def menu_choice_error(options):
     press_enter()
 
 
+def file_not_found_error_message(folder, file, err):
+    print(f""""\r#########Error###########
+          \rProvided folder or file is incorrect/does not exist
+          \rfolder input: >{folder}<
+          \rfile input: >{file}<
+          \rError message: {err}
+          \rPlease try again and follow guidelines!
+          \r##########################""")
+    press_enter()
+    
+
 def press_enter():
     """
     stop program so user can read an error message

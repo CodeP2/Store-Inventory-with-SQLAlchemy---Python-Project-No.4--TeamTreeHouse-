@@ -2,8 +2,26 @@ import csv
 import os
 import datetime
 import sys
+import error_messages
 from inventory_db import session, Product
 from sqlalchemy.exc import IntegrityError
+
+
+def import_csv_message():
+    print("""*Important Information*
+          
+          \rWhen providing a folder name or file name, please follow those guidelines:
+
+          \r1. To move to previous folder (aka level up) please use '../' notion, where:
+          \r\t- if your current folder is 'Folder_one/Folder_two', using '../' will refer to 'Folder_one'.
+
+          \r2. if the file is in the same folder as application, simply press enter when prompted for folder name.
+
+          \rif you haven't moved files or folders, use the following:
+
+          \r- When asked for folder name: ../store-inventory
+          \r- When asked for file name: inventory.csv""")
+    error_messages.press_enter()
 
 
 def get_file(folder, file):
@@ -110,8 +128,4 @@ def insert_data(row):
 
 
 if __name__ == "__main__":
-    folder = sys.argv[1]
-    file = sys.argv[2]
-    csv_file_path = get_file(folder, file)
-    
-    data_to_insert = read_csv_file(csv_file_path)
+    pass

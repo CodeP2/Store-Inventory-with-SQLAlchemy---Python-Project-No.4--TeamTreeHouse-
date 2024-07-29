@@ -26,5 +26,9 @@ class Product(Base):
                 \rDate Updated: {self.date_updated}"""
 
 
-if __name__ == "__main__":
+def start_engine():
     Base.metadata.create_all(engine)
+
+
+if __name__ == "__main__":
+    pass

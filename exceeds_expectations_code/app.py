@@ -1,6 +1,7 @@
 import error_messages
 import search_entry as se
 import add_or_update_entry as aoue
+import check_if_exist
 import export_to_csv
 
 
@@ -31,4 +32,7 @@ def main_menu():
 
 
 if __name__ == "__main__":
+
+    check_if_exist.check_database_exists()
+
     main_menu()
