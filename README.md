@@ -71,7 +71,13 @@ While updating this README file I'm not sure how much I should explain more of m
 
 
 Notes to how the program works:
-so I added check_if_exist.py file to handle if database file is created if not it creates it but also I added additional functionality which is I allow for multiple csv files to be imported if user is done with importing the files after that the program works as pre adding this feature
+- check_if_exist.py checks if database file is created
+- check_if_exist.py ask user if they want to add .csv file to a database (its as an option to provide multiple files) therefore y/n exist
+- add_or_update_entry.py add_product_name() added and handles if the product name is at least 3 charactes long if not user recives an error
+- add_or_update_entry.py get_price_int separated it from get_integer because of ValueError (2x error messages) and added check for decimal point if the passed string of 12.00 does not have .00 part it also recives an error (decimal point is a must)
+- add_or_update_entry.py get_date() requires format  MM/DD/YYYY
+- search_entry.py this code also check if user want to looks for more then one product using global var named keep_looking if the user decides to return to main menu this var ensures to exit both loops and return to main menu
+- export_to_csv.py file ask user to name thier csv backup instead of just simply exporting it as for example Inventory_backup.csv to your_input + _backup.csv
 
 
 bug fixes:
@@ -92,3 +98,4 @@ Links:
 - https://docs.python.org/3/library/functions.html#getattr
 - https://docs.sqlalchemy.org/en/20/orm/contextual.html#sqlalchemy.orm.scoped_session.rollback
 - https://docs.python.org/3/library/os.path.html#module-os.path
+- https://docs.python.org/3/library/re.html#re.Pattern
