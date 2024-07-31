@@ -34,5 +34,5 @@ def main_menu():
 if __name__ == "__main__":
 
     check_if_exist.check_database_exists()
-
+    
     main_menu()

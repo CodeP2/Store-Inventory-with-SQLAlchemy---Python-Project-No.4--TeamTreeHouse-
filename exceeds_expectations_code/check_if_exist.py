@@ -4,8 +4,7 @@ from inventory_db import engine, start_engine
 import os
 
 def check_menu_message():
-    print("""Welcome to 'store inventory with sqlalchemy' Program!
-          \rchecking for existing database...
+    print("""Checking if database exist...
           """)
     error_messages.press_enter()
     
@@ -44,17 +43,18 @@ def check_database_exists():
     check_menu_message()
     connection_check = check_if_database_file_exist()
     if connection_check:
-        print("\nOur database exist!\n")
+        print("\ndatabase exist!\n")
     else:
-        print("\nOur database does not exist... creating a database.\n")
+        print("\ndatabase does not exist... creating a database.\n")
         start_engine()
-    error_messages.press_enter()
-    while True:
-        question = input("\nWould you like to import a csv file to database?(Y/N)\n>  ").strip().lower()
-        if question == "y":
-            import_my_file()
-        elif question == "n":
-            break
-        else:
-            error_messages.menu_choice_error("Y/N")
+    with engine.connect() as connection:
+        error_messages.press_enter()
+        while True:
+            question = input("\nWould you like to import a csv file to database?(Y/N)\n>  ").strip().lower()
+            if question == "y":
+                import_my_file()
+            elif question == "n":
+                break
+            else:
+                error_messages.menu_choice_error("Y/N")
     
