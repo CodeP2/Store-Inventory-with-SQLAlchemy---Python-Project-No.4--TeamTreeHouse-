@@ -1,5 +1,5 @@
 ## Important Information Read This:
-**I will be working on extended_code file on my own time but due to misscomunication I remove it from repo for now.**
+**I will be working on extended_code file on my own time but due to miscommunication I remove it from repo for now.**
 
 Important Note I did create more files because I want my code to be at least more easier to read.
 Instead of being a nightmare to read.
