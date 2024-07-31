@@ -1,6 +1,5 @@
 ## Important Information Read This:
-
-**Before we start I need to explain of why I do have 2 folders in my repository the reason for that is one is an extended code with using different imports and such and the other is for purely exceed expectation.**
+**I will be working on extended_code file on my own time but due to misscomunication I remove it from repo for now.**
 
 Important Note I did create more files because I want my code to be at least more easier to read.
 Instead of being a nightmare to read.
@@ -78,12 +77,14 @@ Notes to how the program works:
 - add_or_update_entry.py get_date() requires format  MM/DD/YYYY
 - search_entry.py this code also check if user want to looks for more then one product using global var named keep_looking if the user decides to return to main menu this var ensures to exit both loops and return to main menu
 - export_to_csv.py file ask user to name thier csv backup instead of just simply exporting it as for example Inventory_backup.csv to your_input + _backup.csv
+- check_if_exist.py Added with engine.connect() as connection: so it prevents user from moving/removing/renaming the file durning the program work (I would do locking but its not as cross platform as I would like it to be) and it runs as soon as database is created so it won't allow a user to tamper with it.
 
 
 bug fixes:
 - Fixed the bug that prevented user to access the question if they want to keep looking or not
 - Fixed infinite loop in add_or_update_entry.py
 - Fixed Infinite loop in search_entry.py
+- Fixed an issue where upon exiting v) Search product by id menu you can no longer access it durning a program run
 
 
 Additional Notes:
