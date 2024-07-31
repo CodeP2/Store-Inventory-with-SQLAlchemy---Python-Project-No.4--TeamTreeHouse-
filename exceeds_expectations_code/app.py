@@ -20,6 +20,7 @@ def main_menu():
         option = input(">  ").lower().strip()
         if option == "v":
             se.search_by_id()
+            se.keep_searching = True
         elif option == "a":
             aoue.add_or_update_product()
         elif option == "b":
@@ -34,5 +35,5 @@ def main_menu():
 if __name__ == "__main__":
 
     check_if_exist.check_database_exists()
-    
+
     main_menu()
